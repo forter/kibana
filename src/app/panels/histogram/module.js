@@ -363,6 +363,10 @@ function (angular, app, $, _, kbn, moment, timeSeries, numeral) {
         facet = facet.interval(_interval).facetFilter($scope.ejs.QueryFilter(query));
         request = request.facet(facet)
           .size($scope.panel.annotate.enable ? $scope.panel.annotate.size : 0);
+       if ($scope.panel.add_query !== "") {
+        //request.facet()[q.id]["facet_filter"]["fquery"]["query"]["filtered"]["query"]["query_string"]["query"] = $scope.panel.add_query
+        request.facet()[q.id]["facet_filter"]["fquery"]["query"]["filtered"]["query"]["query_string"]["query"] += " AND " + $scope.panel.add_query
+       }
       });
 
       if($scope.panel.annotate.enable) {

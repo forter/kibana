@@ -108,7 +108,11 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
           self.elasticsearch_load('temp',_id);
           break;
         case ('file'):
-          self.file_load(_id);
+          if (_id === 'default.json') {
+		$location.path(config.default_route);
+          } else {
+	          self.file_load(_id);
+          }
           break;
         case('script'):
           self.script_load(_id);
@@ -507,7 +511,11 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
       timer.cancel(self.refresh_timer);
       self.refresh_timer = timer.register($timeout(function () {
         self.start_scheduled_refresh(after_ms);
-        self.refresh();
+        if (document.hidden) {
+		console.log('Skip refresh');
+	} else {
+		self.refresh();
+        }
       }, after_ms));
     };
 
