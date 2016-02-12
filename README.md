@@ -1,10 +1,8 @@
-# Kibana
+# Kibana 3 Forever
 
-__NOTE__: You have reached the Kibana 3 repository.
-Kibana 3 is a completely new version of Kibana written entirely in HTML and Javascript. You can find
-the Kibana 2 repository at [https://github.com/rashidkpc/Kibana](https://github.com/rashidkpc/Kibana)
+This is a Kibana 3 fork that is kept up to date and maintained by us @ Forter.
 
-More information about Kibana 3 can be found at [http://www.elasticsearch.org/overview/kibana/](http://www.elasticsearch.org/overview/kibana/)
+While Kibana 3 was discontinued in favor of the superb Kibana 4, some things we do with Kibana 3 are just not possible to do with Kibana 4. This is where we maintain our copy of Kibana 3 that we are using via a proxy server on top of Elasticsearch 2.x (which we will release separately as OSS soon).
 
 ## Overview
 
