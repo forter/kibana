@@ -9,6 +9,11 @@
       <label class="small">Value Field <tip>This field must contain a numeric value</tip></label>
         <input ng-change="set_refresh(true)" placeholder="Start typing" bs-typeahead="fields.list" type="text" class="input-medium" ng-model="panel.value_field">
     </div>
+    <div class="editor-option" >
+      <label class="small">Addtional query</label>
+        <input ng-change="set_refresh(true)" placeholder="Start typing" type="text" class="input-medium" ng-model="panel.add_query">
+    </div>
+
   </div>
   <div class="section">
     <h5>Transform Series</h5>

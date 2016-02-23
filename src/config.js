@@ -30,7 +30,6 @@ function (Settings) {
      *
      */
     elasticsearch: "http://"+window.location.hostname+":9200",
-
     /** @scratch /configuration/config.js/5
      *
      * ==== default_route
@@ -41,7 +40,7 @@ function (Settings) {
      *
      * default_route: '/dashboard/elasticsearch/WebLogs',
      */
-    default_route     : '/dashboard/file/default.json',
+    default_route     : '/dashboard/elasticsearch/Dashboards',
 
     /** @scratch /configuration/config.js/5
      *
@@ -74,6 +73,8 @@ function (Settings) {
       'query',
       'terms',
       'stats',
+      'percentiles',
+      'percentile_ranks',
       'sparklines'
     ]
   });
