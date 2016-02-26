@@ -454,6 +454,7 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
 
     this.elasticsearch_list = function(query,count) {
       var request = ejs.Request().indices(config.kibana_index).types('dashboard');
+      request.fields([]]); // Since this method is only being called by dashboard search, and only _id is used there, no need to load all fields
       return request.query(
         ejs.QueryStringQuery(query || '*')
         ).size(count).doSearch(
