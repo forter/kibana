@@ -396,6 +396,7 @@ function (angular, app, $, _, kbn, moment, timeSeries, numeral) {
         if(segment === 0) {
           $scope.legend = [];
           $scope.hits = 0;
+          $scope.total = 0;
           data = [];
           $scope.annotations = [];
           query_id = $scope.query_id = new Date().getTime();
@@ -411,6 +412,7 @@ function (angular, app, $, _, kbn, moment, timeSeries, numeral) {
           var i = 0,
             time_series,
             hits,
+            total,
             counters; // Stores the bucketed hit counts.
 
           _.each(queries, function(q) {
@@ -426,10 +428,12 @@ function (angular, app, $, _, kbn, moment, timeSeries, numeral) {
               };
               time_series = new timeSeries.ZeroFilled(tsOpts);
               hits = 0;
+              total = 0;
               counters = {};
             } else {
               time_series = data[i].time_series;
               hits = data[i].hits;
+              total = data[i].total;
               counters = data[i].counters;
             }
 
@@ -439,6 +443,7 @@ function (angular, app, $, _, kbn, moment, timeSeries, numeral) {
 
               hits += entry.count; // The series level hits counter
               $scope.hits += entry.count; // Entire dataset level hits counter
+
               counters[entry.time] = (counters[entry.time] || 0) + entry.count;
 
               if($scope.panel.mode === 'count') {
@@ -464,16 +469,20 @@ function (angular, app, $, _, kbn, moment, timeSeries, numeral) {
                 }
               } else if ($scope.panel.mode === 'total'){
                 value = (time_series._data[entry.time] || 0) + entry.total;
+
+                $scope.total += entry[$scope.panel.mode];
+                total += entry[$scope.panel.mode];
               }
               time_series.addValue(entry.time, value);
             });
 
-            $scope.legend[i] = {query:q,hits:hits};
+            $scope.legend[i] = {query:q,hits:hits,total:total};
 
             data[i] = {
               info: q,
               time_series: time_series,
               hits: hits,
+              total: total,
               counters: counters
             };
 
